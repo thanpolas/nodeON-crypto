@@ -1,6 +1,6 @@
 {
   "name": "nodeon-crypto",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "main": "./lib/crypto",
   "description": "A Collection of crypto helper methods.",
   "homepage": "https://github.com/thanpolas/nodeon-crypto",
