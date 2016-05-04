@@ -1,65 +1,78 @@
-# __proto__
+# nodeON-crypto
 
-> Clone, edit, hack. An opinionated boilerplate for Node Libraries.
+> A Collection of crypto helper methods.
 
-[![Build Status](https://secure.travis-ci.org/thanpolas/__proto__.png?branch=master)](http://travis-ci.org/thanpolas/__proto__)
-
-To use, simply Clone, Enter directory, delete `.git` folder and start over:
-
-```shell
-git clone git@github.com:thanpolas/__proto__.git
-cd __proto__
-rm -rf .git
-git init
-git add .
-git commit "Boot!"
-```
-
-Boilerplate OSS follows...
+[![Build Status](https://secure.travis-ci.org/thanpolas/nodeOn-crypto.png?branch=master)](http://travis-ci.org/thanpolas/nodeOn-crypto)
 
 ## Install
 
 Install the module using NPM:
 
 ```
-npm install YADDAYADDA --save
+npm install nodeon-crypto --save
 ```
+
 ## <a name='TOC'>Table of Contents</a>
 
-1. [Overview](#overview)
 1. [API](#api)
-
-## Overview
-
-Lorem ipsum trololol.
+    1. [Hash a string using bcrypt](#hash)
+    1. [Verify a hashed string match](#hashVerify)
+    1. [Set a salt string](#setSalt)
 
 ## API
 
-One more to go back without onez has together we know!
+### <a name='hash'>Hash a string using bcrypt</a>
+
+> ### helpers.hash(text, optOpts, done)
+>
+>    * **text** `string` The string to hash.
+>    * **optOpts** `Object=` Optionally define options.
+>    * **done** `Function()` Node.js style callback.
+>
+
+Hashes a string using the [bcrypt library](https://github.com/ncb000gt/node.bcrypt.js/).
+
+Bcrypt will only hash strings up to 72 chars long. If the passed string is longer than that the `helpers.hash` method will fail with a warning. To ignore that behavior set the `ignoreLimit` option to true:
+
+```js
+
+helpers.hash(longString, {ignoreLimit: true}, function(err, res) {
+    // Ignoring limit will not create an error
+    expect(err).to.be.null;
+    expect(res).to.be.a('string');
+});
+
+```
 
 **[[⬆]](#TOC)**
 
-### <a name='toApi'>Getting an API Safe verison</a>
 
-> ### errInstance.toApi()
+### <a name='hashVerify'>Verify a hashed string match</a>
+
+> ### helpers.hashVerify(hash, text, done)
 >
-> *Returns* `Object` A sanitized object.
+>    * **hash** `string` The hashed string.
+>    * **text** `string` The string to test.
+>    * **done** `Function(boolean)` Callback with a single argument, boolean.
+>
 
-Clones the error object and strips it of all the `Error` getters (like `stack`) and the following attributes:
-    
-    * `srcError`
+Tests if the given string matches the provided hash.
 
-```js
-var appErr = require('nodeon-error');
+**[[⬆]](#TOC)**
 
-var error = new appErr.Error();
+### <a name='setSalt'>Set a salt string</a>
 
-console.log(error.toApi());
-```
+> ### crypto.setSalt(salt)
+>
+>    * **salt** `string` Any string.
+
+Use it once to set a salt for the crypto functions.
+
+**[[⬆]](#TOC)**
 
 ## Release History
 
-- **v0.0.1**, *TBD*
+- **v1.0.0**, *04 May 2016*
     - Big Bang
 
 ## License
