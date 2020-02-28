@@ -72,6 +72,8 @@ Use it once to set a salt for the crypto functions.
 
 ## Release History
 
+- **v1.0.1**, *28 Feb 2020*
+    - Updated all dependencies to latest.
 - **v1.0.0**, *04 May 2016*
     - Big Bang
 
